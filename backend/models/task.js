@@ -16,7 +16,7 @@ const taskSchema =  new mongoose.Schema({
     completed: {
         type: Boolean,
         required: true,
-        default: true,
+        default: false,
     },
 
     createdAt: {
@@ -25,13 +25,20 @@ const taskSchema =  new mongoose.Schema({
     }, 
 
     category: {
-       enum: ["Work", "Personal", "Hobby"] 
+        type: String,
+        required: true,
+        enum: {
+            values: ["work", "personal", "hobby"],
+            message: "{VALUE} is not valid"
+    }
     }, 
 
-    user: {
+    createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: [true, "Provide user"]
     }
 
 })
+
+module.exports = mongoose.model("tasks", taskSchema)

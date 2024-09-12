@@ -4,10 +4,15 @@ const connectDB =  require("./db/connect")
 
 const app = express()
 
-const tasks = require("./routes/routes");
+const tasks = require("./routes/tasks");
+const auth = require("./routes/auth")
 
 app.use(express.static("./public"))
-app.use("/api/v1/tasks", tasks)
+
+const authMiddleware =  require("./middleware/authentication")
+
+app.use("/api/v1/auth", auth)
+app.use("/api/v1/tasks",authMiddleware, tasks)
 
 
 const run = async () => {
@@ -23,4 +28,5 @@ const run = async () => {
     }
 }
 
+run()
 
