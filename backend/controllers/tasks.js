@@ -1,5 +1,6 @@
 const Task =  require("../models/task")
 const User =  require("../models/user")
+const CustomError = require("../errors/customError")
 
 const getTasks =  async (req, res) => {
    const userID = req.user.userID
@@ -48,7 +49,7 @@ const updateTask = async (req, res) => {
     } = req
 
     if (title === "" || description === "" || category === "" || completed === ""){
-        throw new Error("One of the Fields is empty")
+        throw new CutsomError("One of the Fields is empty")
     }
 
     const task = await User.findOneAndUpdate(
@@ -61,7 +62,7 @@ const updateTask = async (req, res) => {
     )
 
     if (!task){
-        throw new Error("Task does not exist")
+        throw new CustomError("Task does not exist")
     }
 
     res.status(200).json(task)

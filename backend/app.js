@@ -10,9 +10,11 @@ const auth = require("./routes/auth")
 app.use(express.static("./public"))
 
 const authMiddleware =  require("./middleware/authentication")
+const errorHandlerMiddleware = require("./middleware/errorHandler")
 
 app.use("/api/v1/auth", auth)
 app.use("/api/v1/tasks",authMiddleware, tasks)
+app.use(errorHandlerMiddleware)
 
 
 const run = async () => {

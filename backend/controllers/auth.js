@@ -1,5 +1,5 @@
 const User =  require("../models/user")
-
+const CustomError = require("../errors/customError")
 
 const register = async (req, res) =>{
      const user = await User.create({...req.body})
@@ -12,19 +12,19 @@ const login = async (req,res) => {
 
   const {emailAddress, password} = req.body
   if (!emailAddress || !password){
-    throw new Error("Missing credentials")
+    throw new CustomError("Missing credentials")
   }
 
   const user = await User.findOne({emailAddress})
 
   if (!user){
-    throw new Error("Invalid emailAddress")
+    throw new CustomError("Invalid emailAddress")
   }
 
   const isPasswordValid =  user.comparePassword(password)
 
   if (isPasswordValid === false){
-    throw new Error("Invalid credentials")
+    throw new CustomError("Invalid credentials")
   }
 
   const token = user.createJWT()
