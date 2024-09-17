@@ -1,5 +1,10 @@
 const express =  require('express');
 require("dotenv").config()
+require("express-async-errors")
+
+const helmet = require("helmet")
+const cors = require("cors")
+
 const connectDB =  require("./db/connect")
 
 const app = express()
@@ -11,10 +16,19 @@ app.use(express.static("./public"))
 
 const authMiddleware =  require("./middleware/authentication")
 const errorHandlerMiddleware = require("./middleware/errorHandler")
+const notFound = require("./middleware/notFound")
+const xssCleanMiddleware = require("./middleware/xssClean")
 
-app.use("/api/v1/auth", auth)
-app.use("/api/v1/tasks",authMiddleware, tasks)
+app.use(express.json())
+
+app.use(helmet())
+app.use(cors())
+app.set("trust proxy", 1)
+
+app.use("/api/v1/auth",xssCleanMiddleware, auth)
+app.use("/api/v1/tasks",xssCleanMiddleware, authMiddleware, tasks)
 app.use(errorHandlerMiddleware)
+app.use(notFound )
 
 
 const run = async () => {
