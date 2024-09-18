@@ -15,7 +15,7 @@ const auth = require("./routes/auth")
 app.use(express.static("./public"))
 
 const authMiddleware =  require("./middleware/authentication")
-const errorHandlerMiddleware = require("./middleware/errorHandler")
+const errorHandlerMiddleware = require("./middleware/errorhandler")
 const notFound = require("./middleware/notFound")
 const xssCleanMiddleware = require("./middleware/xssClean")
 
