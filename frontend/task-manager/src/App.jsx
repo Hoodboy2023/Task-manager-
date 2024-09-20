@@ -1,6 +1,5 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import { useState} from 'react'
-import './App.css'
 import Dashboard from "./pages/dashboard"
 import Home from "./pages/home"
 import Login from "./pages/login"
@@ -13,7 +12,7 @@ function App() {
       <div>
         <BrowserRouter>
            <Routes>
-                <Route path="/dashbord" element={<Dashboard/>}/>
+                <Route path="/dashboard" element={<Dashboard/>}/>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>

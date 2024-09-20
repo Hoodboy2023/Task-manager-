@@ -7,10 +7,10 @@ import AddTask from "../components/addTask"
 const Dashboard =  () => {
 
 
-    return <div>
-    <div className="container">
+    return (<div>
+    <div className="container-fluid">
         <div className="row">
-            <div className="col-4">
+            <div className="col-2">
                <h1>TaskBuddy</h1>
                 <p>Hi user</p>
                 <div>
@@ -27,7 +27,7 @@ const Dashboard =  () => {
                 </div>
 
             </div>
-            <div className="col-8">
+            <div className="col-10">
                 <div>
                    <Overview/>    
                 </div>
@@ -40,7 +40,7 @@ const Dashboard =  () => {
             </div>
         </div>
     </div>
-</div> 
+</div> )
 }
 
 export default Dashboard

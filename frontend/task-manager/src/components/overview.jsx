@@ -5,11 +5,11 @@ const Overview =  () => {
     const [data, setData] = useState(null)
 
 
-    if(data === null){
-        <Loading/>
-    }
+   /* if(data === null){
+       console.log("hello")
+    }*/
 
-    if (data.length !== 0) {
+    if (data === null) {
     return (
         
         <div className="container-fluid">
