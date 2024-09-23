@@ -1,7 +1,7 @@
 const mongoose =  require("mongoose")
 
 const taskSchema =  new mongoose.Schema({
-    title: {
+    taskName: {
         type: String,
         required:[true, "Please provide title"],
         trim: true,
@@ -37,6 +37,10 @@ const taskSchema =  new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: [true, "Provide user"]
+    },
+    dueDate: {
+        type: Date,
+        required: true
     }
 
 })

@@ -49,7 +49,7 @@ const updateTask = async (req, res) => {
     } = req
 
     if (title === "" || description === "" || category === "" || completed === ""){
-        throw new CutsomError("One of the Fields is empty")
+        throw new CustomError("One of the Fields is empty")
     }
 
     const task = await User.findOneAndUpdate(

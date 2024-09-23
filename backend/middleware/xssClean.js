@@ -1,7 +1,7 @@
 const DOMPurify = require("dompurify")
 const { JSDOM } = require("jsdom") 
 
-const window = new JSDOM.windpw("")
+const window = new JSDOM("").window
 const DOMPurifyInstance =  DOMPurify(window)
 
 const xssClean = (req,res,next) => {

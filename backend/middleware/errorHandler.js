@@ -7,11 +7,12 @@ const errorHandler = (err,req,res,next) => {
 
     if (err.name === "ValidationError"){
         statusCode = 400
-        message = object.values(err.error).map(e => e.message).join(", ")
+        message = Object.values(err.errors).map(e => e.message).join(", ")
     }
 
     if (err.code && err.code === 11000){
-        message =  `Unique Field violation by ${object.keys(err.keyValue)} Field, choose another value`
+        console.log("here")
+        message =  `Value in ${Object.keys(err.keyValue)} Field already exists`
         statusCode = 400
     }
 
@@ -20,7 +21,7 @@ const errorHandler = (err,req,res,next) => {
         statusCode = 400
     }
 
-    if (err instanceof customError){
+    if (err instanceof CustomError){
         statusCode = err.statusCode
         message = err.message
     }
